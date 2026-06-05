@@ -40,7 +40,7 @@ export function WelcomePage() {
               to="/programacoes"
               className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-card text-foreground px-5 py-2.5 text-sm font-medium hover:bg-primary/5 transition-colors"
             >
-              <Settings className="w-4 h-4 text-primary" /> Nova Programação
+              <Settings className="w-4 h-4 text-primary" />  Programações
             </Link>
           </div>
         </div>

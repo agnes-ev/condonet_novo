@@ -1,0 +1,61 @@
+// Esse arquivo vai ficar em: front/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./condonet.db"
+}
+
+model ConfiguracaoSistema {
+  id               Int    @id @default(autoincrement())
+  modelo_condonet  String
+  modo_numeracao   String
+}
+
+model Categoria {
+  id     Int     @id @default(autoincrement())
+  nome   String
+  ramais Ramal[]
+}
+
+model Ramal {
+  id              Int       @id @default(autoincrement())
+  numero_fisico   Int
+  numero_flexivel String?
+  categoria_id    Int
+  categoria       Categoria @relation(fields: [categoria_id], references: [id])
+  desvios         Desvio[]
+}
+
+model Desvio {
+  id              Int    @id @default(autoincrement())
+  numero_destino  String
+  condicao        String // ex: "ocupado", "nao_atende"
+  ramal_origem_id Int
+  ramal           Ramal  @relation(fields: [ramal_origem_id], references: [id])
+}
+
+model Bloco {
+  id        Int        @id @default(autoincrement())
+  nome      String
+  porteiros Porteiro[]
+}
+
+model Porteiro {
+  id               Int         @id @default(autoincrement())
+  numero_interfone Int
+  bloco_id         Int
+  bloco            Bloco       @relation(fields: [bloco_id], references: [id])
+  fechaduras       Fechadura[]
+}
+
+model Fechadura {
+  id          Int      @id @default(autoincrement())
+  senha       String
+  tipo_toque  String
+  porteiro_id Int
+  porteiro    Porteiro @relation(fields: [porteiro_id], references: [id])
+}

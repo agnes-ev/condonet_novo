@@ -55,7 +55,7 @@ export type ToastFn = (msg: string, v?: "info" | "error") => void;
 export const CATEGORIAS: { value: Category; label: string }[] = [
   { value: "ramal_normal", label: "Ramal normal" },
   { value: "porteiro_fechadura", label: "Porteiro/Fechadura" },
-  { value: "portaria_atendedor", label: "Portaria/Atendedor" },
+  { value: "portaria_atendedor", label: "Portaria" },
   { value: "programador", label: "Programador" },
   { value: "sindico", label: "Síndico" },
 ];
@@ -168,7 +168,7 @@ export function HeaderCell({
     <button
       type="button"
       onClick={onSort}
-      className="inline-flex w-full items-center justify-center gap-2 text-center hover:text-foreground"
+      className="inline-flex w-full items-center justify-center gap-2 text-center hover:text-primary"
     >
       <span className="whitespace-normal text-center leading-tight">{label}</span>
 
